@@ -2,93 +2,192 @@
 
 An explainable Bayesian MVP for preliminary reasoning over vague elderly health symptoms.
 
-## Scope
+## Current Status
 
-This project focuses on a small, safe, course-aligned MVP that:
+This repo is now in a **demo-ready MVP state** for the CS3263 project.
 
-- accepts a free-text symptom description
-- maps it into a reduced evidence schema
-- ranks four modeled conditions with Bayesian inference
-- applies hard safety overrides for urgent red flags
-- returns probabilities, explanation text, and safe next-step guidance
+The current app:
 
-This system is **not** a medical diagnostic tool and is intended only as a teaching/demo prototype for CS3263.
+- accepts one free-text symptom description
+- maps it into a reduced structured evidence schema
+- ranks 4 modeled conditions with a Bayesian reasoning layer
+- applies urgent safety overrides for red-flag cases
+- returns explanation text, recommendation text, and a visible non-diagnosis disclaimer
+- includes demo notes in the sidebar for presentation use
 
-## Initial Repository Layout
+This system is **not** a medical diagnostic tool. It is a teaching/demo prototype for CS3263.
+
+## Modeled Scope
+
+### Conditions
+
+- dehydration
+- hypoglycemia
+- mild viral infection
+- medication side effect
+
+### Context variables
+
+- skipped meal
+- low water intake
+- poor sleep
+- chronic condition flag
+
+### Symptoms
+
+- dizziness
+- fatigue
+- dry mouth
+- headache
+- mild fever
+- nausea
+- sweating
+- confusion
+
+### Red-flag overrides
+
+- chest pain
+- severe confusion
+- fainting
+- recent fall
+
+## Repository Layout
 
 ```text
-app/                 Demo app entrypoint
-config/              Human-readable variables, rules, lexicon, and CPT files
-data/                Raw and processed datasets
-docs/                Knowledge sources, assumptions, and benchmark notes
+app/                 Streamlit demo app
+config/              Variables, lexicon, rules, CPTs, and benchmark cases
+data/                Raw and processed datasets / notes
+docs/                Knowledge sources, assumptions, evaluation summaries
 notebooks/           Optional exploration notebooks
-src/                 Core parser, BN, rules, explanation, and evaluation code
-tests/               Smoke tests and future unit tests
+src/                 Parser, BN, rules, explanation, and evaluation code
+tests/               Test suite
 ```
 
-## Planned Core Modules
+## Teammate Setup
 
-- `src/parser/`: vague symptom text normalization
-- `src/bn/`: Bayesian network structure and inference
-- `src/rules/`: urgent escalation overrides
-- `src/explain/`: explanation and advice generation
-- `src/eval/`: parser, ranking, and safety evaluation
+Run everything from the repository root.
 
-## Local Setup
+### 1. Create and activate an environment
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
+
+If you prefer Conda, that is fine too, but make sure `python3`, `pip`, and Streamlit all come from the same active environment.
+
+### 2. Install dependencies
+
+```bash
 python3 -m pip install -r requirements.txt
 ```
 
-If you are using Conda instead of `venv`, make sure `python3`, `pip`, and `streamlit` all come from the same active environment before running the app or evaluation commands.
+### 3. Run the demo app
 
-## Run the App
+Use the module form so the app definitely runs in the same Python environment that has the dependencies installed:
 
 ```bash
-streamlit run app/streamlit_app.py
+python3 -m streamlit run app/streamlit_app.py
 ```
 
-## Run Evaluation
+Then open the local Streamlit URL in your browser.
+
+### 4. Run the evaluation pipeline
 
 ```bash
 python3 -m src.eval
 ```
 
-This command:
+This writes report-ready summaries to:
 
-- runs the parser, ranking, and safety benchmarks defined in `config/benchmark_cases.yaml`
-- writes report-ready summaries to `docs/evaluation_summary.md` and `docs/evaluation_summary.json`
+- `docs/evaluation_summary.md`
+- `docs/evaluation_summary.json`
 
-If you see `ModuleNotFoundError: No module named 'yaml'`, install the project dependencies in the same environment:
+### 5. Run the tests
+
+```bash
+pytest -q
+```
+
+## What Teammates Need To Know
+
+### For demo use
+
+You do **not** need the large raw datasets to run the app, run tests, or run the evaluation pipeline.
+
+The committed config files and benchmark files are enough for:
+
+- the Streamlit demo
+- the parser / BN / rules pipeline
+- the benchmark evaluation
+
+### For dataset analysis / further refinement
+
+Raw-data notes are documented in:
+
+- `docs/data_ingestion.md`
+
+The project may contain:
+
+- smaller tracked raw files for reference
+- processed notes and mappings
+- a large Kaggle raw file that is intentionally not required for normal app usage
+
+## Demo Flow
+
+Recommended teammate demo flow:
+
+1. launch the Streamlit app
+2. use one of the example cards or type a symptom description
+3. click `Analyze`
+4. review the extracted evidence
+5. review the safety override
+6. review the condition ranking, explanation, and recommendation
+7. use the sidebar demo notes if you need to explain how the backend works
+8. use `Clear` to reset back to the landing state
+
+## Evaluation Purpose
+
+The evaluation pipeline exists mainly for the report and presentation, not for end users.
+
+It measures:
+
+- parser precision / recall / F1
+- ranking Top-1 accuracy
+- ranking Top-2 recall
+- safety recall / accuracy
+
+The benchmark cases live in:
+
+- `config/benchmark_cases.yaml`
+
+## Key Docs
+
+- `MVP_DELIVERY_PLAN.md`: current implementation plan and progress log
+- `docs/knowledge_sources.md`: public-source grounding
+- `docs/cpt_assumptions.md`: CPT assumptions
+- `docs/cpt_grounding.md`: rationale for probability choices
+- `docs/evaluation_summary.md`: benchmark summary
+
+## Troubleshooting
+
+### `ModuleNotFoundError: No module named 'yaml'`
+
+Install dependencies in the same environment you are using to run the commands:
 
 ```bash
 python3 -m pip install -r requirements.txt
 ```
 
-## External Data
+### Streamlit runs but `python3 -m src.eval` fails
 
-The raw-data folders are prepared under `data/raw/`. Source notes live in:
-
-- `docs/data_ingestion.md`
-
-If you later want to fetch the external files from the command line, a helper script is available:
+This usually means the app and `python3` are coming from different environments. Activate the same environment and rerun:
 
 ```bash
-bash scripts/fetch_external_data.sh
+source .venv/bin/activate
+python3 -m src.eval
 ```
 
-Note:
+### Resetting the demo
 
-- the OpenReview paper and Figshare dataset can be fetched directly when network access is allowed
-- the Kaggle dataset usually requires authenticated/manual download
-
-## Current Status
-
-This is the initial scaffold commit. The next build steps are:
-
-1. ingest the reduced datasets into `data/raw/`
-2. expand the parser lexicon with dataset-driven phrasing
-3. refine CPT assumptions with stronger source grounding
-4. iterate on benchmark failures and demo polish
+Use the app's `Clear` button to return to the landing state and remove the current results.
