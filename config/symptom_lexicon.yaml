@@ -1,3 +1,47 @@
+context_variables:
+  skipped_meal:
+    positive:
+      - skipped meal
+      - skipped breakfast
+      - missed a meal
+      - missed breakfast
+      - haven't eaten
+      - havent eaten
+      - have not eaten
+      - didn't eat
+      - didnt eat
+      - did not eat
+      - empty stomach
+  low_water_intake:
+    positive:
+      - not enough water
+      - haven't had much water
+      - havent had much water
+      - have not had much water
+      - didn't drink much water
+      - didnt drink much water
+      - did not drink much water
+      - barely drank water
+      - barely drinking water
+  poor_sleep:
+    positive:
+      - poor sleep
+      - didn't sleep well
+      - didnt sleep well
+      - did not sleep well
+      - little sleep
+      - lack of sleep
+      - sleep deprived
+      - woke up a lot
+  chronic_condition_flag:
+    positive:
+      - diabetes
+      - diabetic
+      - hypertension
+      - high blood pressure
+      - chronic condition
+      - existing condition
+
 symptoms:
   dizziness:
     positive:
@@ -68,7 +112,13 @@ red_flags:
       - fell down
 
 negations:
-  - no
-  - not
-  - without
-  - never
+  - "no"
+  - "not"
+  - "without"
+  - "never"
+  - don't
+  - dont
+  - didn't
+  - didnt
+  - haven't
+  - havent

@@ -420,9 +420,9 @@ This MVP plan also supports the final report structure required by the course.
 The highest-priority next implementation steps are:
 
 1. ingest the two public datasets into `data/raw/`
-2. finalize the variable schema and lexicon files in `config/`
-3. replace the parser and BN stubs with working implementations
-4. fill in CPT priors and symptom likelihoods with documented assumptions
+2. expand the parser lexicon using dataset-derived symptom phrasing
+3. implement the safety override engine
+4. implement Bayesian condition ranking and CPT loading
 5. wire the end-to-end app flow and benchmark scripts
 
 ## 14. Non-Negotiable Guardrails
@@ -432,5 +432,22 @@ The highest-priority next implementation steps are:
 - do not expand beyond four modeled conditions for the MVP
 - do not let the UI work delay parser, BN, or evaluation
 - do not ship without a visible disclaimer and urgent escalation path
+
+## 15. Implementation Progress
+
+Completed checkpoints:
+
+- repository scaffold and local Git setup completed
+- parser checkpoint completed:
+  - YAML-backed parser config loader added
+  - canonical `yes/no/unknown` evidence schema implemented
+  - phrase-based symptom, context, and red-flag extraction implemented
+  - simple negation handling implemented
+  - parser tests added
+  - Streamlit app updated to preview extracted evidence
+
+Next logical implementation slice:
+
+- deterministic safety override engine plus app-side warning output
 
 This plan gives a single primary implementer a realistic path to a high-scoring, course-aligned MVP within one week while staying faithful to the professor's feedback and the grading rubric.
