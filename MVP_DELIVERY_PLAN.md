@@ -465,6 +465,12 @@ Current repo-side progress:
 - add more negative cases for safety overrides
 - use benchmark failures to drive targeted parser and CPT fixes
 
+Current repo-side progress:
+
+- the tracked benchmark set has been expanded with additional parser edge cases, ranking overlap cases, and negative override cases
+- evaluation coverage now includes sparse-input parsing, negated red-flag phrasing, multi-rule precedence, and closer dehydration-vs-medication / dehydration-vs-hypoglycemia comparisons
+- the evaluation summary artifact now surfaces benchmark set sizes so the broader coverage is visible in the generated report output
+
 ### Refinement goal 6: add demo-oriented backend notes in the UI
 
 - add a demo-only section in the Streamlit app explaining each module
@@ -505,7 +511,7 @@ This MVP plan also supports the final report structure required by the course.
 The highest-priority next implementation steps are:
 
 1. broaden benchmark coverage with more ambiguous cases, negative override cases, and parser edge cases
-2. tighten the evaluation workflow and document the intended way to run it locally
+2. finish tightening the evaluation workflow and document the intended way to run it locally
 3. reassess whether a very small condition or symptom-schema expansion is actually justified after the broader benchmark pass
 
 ## 15. Non-Negotiable Guardrails
@@ -581,11 +587,15 @@ Completed checkpoints:
   - `docs/cpt_assumptions.md` strengthened with clearer priors, symptom anchors, and source-backed rationale
   - `docs/knowledge_sources.md` updated with explicit source URLs for the currently modeled conditions
   - mild viral infection likelihoods slightly recalibrated to better reflect the cited symptom references
+- broader benchmark coverage checkpoint completed:
+  - parser benchmarks expanded with additional natural-language variants, sparse-input coverage, and negation cases
+  - ranking benchmarks expanded with additional overlap cases and explicit negative-evidence cases
+  - safety benchmarks expanded with more non-trigger cases and a multi-rule precedence case
+  - generated evaluation summary now reports benchmark set sizes alongside headline metrics
 
 Next logical implementation slice:
 
 - refinement phase:
-  - broader benchmark coverage
   - evaluation-command reliability and usage cleanup
   - controlled decision on whether any small coverage expansion is still worth it
 

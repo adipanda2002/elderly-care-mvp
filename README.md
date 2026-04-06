@@ -39,8 +39,10 @@ tests/               Smoke tests and future unit tests
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
+
+If you are using Conda instead of `venv`, make sure `python3`, `pip`, and `streamlit` all come from the same active environment before running the app or evaluation commands.
 
 ## Run the App
 
@@ -52,6 +54,17 @@ streamlit run app/streamlit_app.py
 
 ```bash
 python3 -m src.eval
+```
+
+This command:
+
+- runs the parser, ranking, and safety benchmarks defined in `config/benchmark_cases.yaml`
+- writes report-ready summaries to `docs/evaluation_summary.md` and `docs/evaluation_summary.json`
+
+If you see `ModuleNotFoundError: No module named 'yaml'`, install the project dependencies in the same environment:
+
+```bash
+python3 -m pip install -r requirements.txt
 ```
 
 ## External Data

@@ -49,6 +49,14 @@ def _build_markdown(summary: dict[str, Any]) -> str:
 | Safety Recall | {safety['recall']:.3f} | {targets['safety_recall_target']:.2f} |
 | Safety Accuracy | {safety['accuracy']:.3f} | - |
 
+## Benchmark Coverage
+
+| Benchmark Group | Cases |
+| --- | ---: |
+| Parser Cases | {parser['num_cases']} |
+| Ranking Cases | {ranking['num_cases']} |
+| Safety Cases | {safety['num_cases']} |
+
 ## Notes
 
 - Benchmarks are synthetic or hand-authored for the reduced MVP scope.

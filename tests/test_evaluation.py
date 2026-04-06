@@ -11,7 +11,7 @@ from src.eval import (
 def test_parser_benchmark_metrics_are_computed() -> None:
     summary = evaluate_parser_cases()
 
-    assert summary["num_cases"] >= 5
+    assert summary["num_cases"] >= 12
     assert 0.0 <= summary["precision"] <= 1.0
     assert 0.0 <= summary["recall"] <= 1.0
     assert 0.0 <= summary["f1"] <= 1.0
@@ -20,7 +20,7 @@ def test_parser_benchmark_metrics_are_computed() -> None:
 def test_ranking_benchmark_metrics_are_computed() -> None:
     summary = evaluate_ranking_cases()
 
-    assert summary["num_cases"] >= 5
+    assert summary["num_cases"] >= 10
     assert summary["top1_accuracy"] >= 0.75
     assert summary["top2_recall"] >= 0.90
 
@@ -28,7 +28,7 @@ def test_ranking_benchmark_metrics_are_computed() -> None:
 def test_safety_benchmark_metrics_are_computed() -> None:
     summary = evaluate_safety_cases()
 
-    assert summary["num_cases"] >= 6
+    assert summary["num_cases"] >= 12
     assert summary["recall"] == 1.0
     assert 0.0 <= summary["accuracy"] <= 1.0
 

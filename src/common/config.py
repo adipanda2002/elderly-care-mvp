@@ -6,7 +6,13 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-import yaml
+try:
+    import yaml
+except ModuleNotFoundError as exc:
+    raise ModuleNotFoundError(
+        "Missing dependency 'pyyaml'. Install project dependencies with "
+        "`python3 -m pip install -r requirements.txt` from the repository root."
+    ) from exc
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]

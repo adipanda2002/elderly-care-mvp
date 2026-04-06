@@ -46,6 +46,41 @@ parser_cases:
     expected:
       fatigue: yes
 
+  - id: parser_lightheaded_dry_mouth_variant
+    text: I am feeling lightheaded when standing and my mouth is feeling very dry.
+    expected:
+      dizziness: yes
+      dry_mouth: yes
+
+  - id: parser_thirst_low_water_variant
+    text: I barely drank water and now I am very thirsty.
+    expected:
+      low_water_intake: yes
+      dry_mouth: yes
+
+  - id: parser_poor_sleep_headache_variant
+    text: I am sleep deprived, woke up a lot, and have a morning headache.
+    expected:
+      poor_sleep: yes
+      headache: yes
+
+  - id: parser_clammy_hypoglycemia_variant
+    text: I skipped breakfast and feel clammy and dizzy.
+    expected:
+      skipped_meal: yes
+      sweating: yes
+      dizziness: yes
+
+  - id: parser_negated_nausea_and_fainting
+    text: I do not feel nauseous and I have not fainted.
+    expected:
+      nausea: no
+      fainting: no
+
+  - id: parser_sparse_no_signal_case
+    text: I just feel off today.
+    expected: {}
+
 ranking_cases:
   - id: ranking_dehydration
     evidence:
@@ -102,6 +137,62 @@ ranking_cases:
       - dehydration
       - hypoglycemia
 
+  - id: ranking_dehydration_vs_medication_overlap
+    evidence:
+      low_water_intake: yes
+      dry_mouth: yes
+      nausea: yes
+      chronic_condition_flag: yes
+    expected_top1: dehydration
+    acceptable_top2:
+      - dehydration
+      - medication_side_effect
+
+  - id: ranking_medication_vs_dehydration_overlap
+    evidence:
+      chronic_condition_flag: yes
+      dizziness: yes
+      dry_mouth: yes
+      nausea: yes
+    expected_top1: medication_side_effect
+    acceptable_top2:
+      - medication_side_effect
+      - dehydration
+
+  - id: ranking_hypoglycemia_with_negative_dry_mouth
+    evidence:
+      skipped_meal: yes
+      sweating: yes
+      dizziness: yes
+      dry_mouth: no
+    expected_top1: hypoglycemia
+    acceptable_top2:
+      - hypoglycemia
+      - dehydration
+
+  - id: ranking_viral_with_nausea_overlap
+    evidence:
+      fatigue: yes
+      headache: yes
+      mild_fever: yes
+      nausea: yes
+    expected_top1: mild_viral_infection
+    acceptable_top2:
+      - mild_viral_infection
+      - medication_side_effect
+
+  - id: ranking_medication_with_negative_water_signal
+    evidence:
+      chronic_condition_flag: yes
+      nausea: yes
+      dry_mouth: yes
+      mild_fever: no
+      low_water_intake: no
+    expected_top1: medication_side_effect
+    acceptable_top2:
+      - medication_side_effect
+      - dehydration
+
 safety_cases:
   - id: safety_chest_pain
     text: I feel dizzy and have chest tightness.
@@ -132,3 +223,33 @@ safety_cases:
     text: I did not drink much water today and my mouth feels dry.
     expected_trigger: false
     expected_rule_id: ""
+
+  - id: safety_negated_fainting_and_chest_pain
+    text: I have not fainted and I do not have chest pain, only a headache.
+    expected_trigger: false
+    expected_rule_id: ""
+
+  - id: safety_non_severe_confusion_after_poor_sleep
+    text: I am not thinking clearly after poor sleep, but I did not faint.
+    expected_trigger: false
+    expected_rule_id: ""
+
+  - id: safety_negated_fall_with_dizziness
+    text: I feel dizzy but I have not had a fall.
+    expected_trigger: false
+    expected_rule_id: ""
+
+  - id: safety_negated_severe_confusion_phrase
+    text: I am confused, but not very confused, and I did not faint.
+    expected_trigger: false
+    expected_rule_id: ""
+
+  - id: safety_multiple_red_flags_precedence
+    text: I fainted and also have chest pain.
+    expected_trigger: true
+    expected_rule_id: chest_pain_emergency
+
+  - id: safety_fall_dizziness_without_fainting
+    text: I did not faint, but I fell down earlier and now I feel dizzy.
+    expected_trigger: true
+    expected_rule_id: dizziness_after_fall
