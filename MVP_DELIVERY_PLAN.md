@@ -561,11 +561,16 @@ Completed checkpoints:
   - `.gitignore` updated to allow tracked small raw files and committed processed artifacts
   - large Kaggle raw file kept ignored by default
   - `data/processed/README.md` added to clarify what should be committed
+- dataset-driven parser expansion checkpoint completed:
+  - lexicon expanded using real phrasing from FigShare and Kaggle sources
+  - schema kept stable while phrase coverage increased
+  - processed phrase-expansion notes added to `data/processed/parser_phrase_expansion.md`
+  - parser tests added for the new dataset-derived wording
 
 Next logical implementation slice:
 
 - refinement phase:
-  - parser coverage expansion
+  - benchmark-driven parser coverage expansion
   - stronger CPT grounding
   - broader benchmark coverage
 

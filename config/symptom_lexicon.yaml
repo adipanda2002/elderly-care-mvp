@@ -46,19 +46,37 @@ symptoms:
   dizziness:
     positive:
       - dizzy
+      - dizziness
       - lightheaded
       - light headed
+      - lightheadedness
+      - feeling lightheaded
+      - feeling lightheaded when standing
+      - sensation of spinning
+      - feeling dizzy
+      - feeling faint
+      - feeling faint upon standing
       - woozy
       - unsteady
   fatigue:
     positive:
       - tired
       - fatigued
+      - fatigue
+      - feeling tired
+      - extreme tiredness
+      - tiredness
+      - feeling unusually tired
       - weak
+      - weakness
+      - muscle weakness
+      - feeling weak
+      - a feeling of weakness
       - exhausted
   dry_mouth:
     positive:
       - dry mouth
+      - mouth dryness
       - mouth feels dry
       - mouth feels very dry
       - mouth is dry
@@ -66,17 +84,25 @@ symptoms:
       - mouth is feeling dry
       - mouth is feeling very dry
       - thirsty
+      - feeling thirsty
+      - increased thirst
+      - thirst
       - very thirsty
       - parched
   headache:
     positive:
       - headache
+      - headaches
+      - morning headache
+      - frontal headache
       - head hurts
       - head pain
   mild_fever:
     positive:
       - fever
       - warm
+      - feeling warm
+      - feeling hot
       - slightly warm
       - mild fever
   nausea:
@@ -87,11 +113,20 @@ symptoms:
   sweating:
     positive:
       - sweating
+      - profuse sweating
+      - night sweats
+      - cold sweat
+      - cool clammy skin
+      - feeling sweaty
+      - sweat
       - sweaty
       - clammy
   confusion:
     positive:
       - confused
+      - confusion
+      - confused thinking
+      - disorientation
       - disoriented
       - not thinking clearly
 
@@ -99,6 +134,9 @@ red_flags:
   chest_pain:
     positive:
       - chest pain
+      - sharp chest pain
+      - stabbing chest pain
+      - burning chest pain
       - chest tightness
       - pressure in my chest
   severe_confusion:
@@ -109,11 +147,13 @@ red_flags:
   fainting:
     positive:
       - fainted
+      - loss of consciousness
       - passed out
       - blacked out
   recent_fall:
     positive:
       - fell
+      - falls
       - had a fall
       - fell down
 
