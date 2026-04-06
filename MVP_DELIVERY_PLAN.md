@@ -611,6 +611,9 @@ Completed checkpoints:
   - tightened the centered subtitle width and wrapping so the landing copy balances more cleanly
   - added one-time smooth scrolling to the results section after analysis completes
   - retargeted the auto-scroll to the analysis controls area so the `Extracted Evidence` heading naturally remains in view
+- public-facing README checkpoint completed:
+  - rewrote the README to describe the project as a mature public repository rather than an internal teammate handoff
+  - kept setup, usage, evaluation, and troubleshooting instructions clear without framing them as private team notes
 
 Next logical implementation slice:
 

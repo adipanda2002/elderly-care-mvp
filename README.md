@@ -2,24 +2,17 @@
 
 An explainable Bayesian MVP for preliminary reasoning over vague elderly health symptoms.
 
-## Current Status
+## Overview
 
-This repo is now in a **demo-ready MVP state** for the CS3263 project.
+This repository contains the MVP for a CS3263 application project on reasoning under uncertainty. The system accepts a short free-text symptom description, maps it into a reduced evidence schema, ranks a small set of plausible conditions, applies urgent safety overrides, and returns an explanation plus safe next-step guidance.
 
-The current app:
+The project is intentionally narrow. It is designed as a course-aligned demonstration of Bayesian reasoning, safety-oriented rule overrides, explainability, and benchmark-driven evaluation.
 
-- accepts one free-text symptom description
-- maps it into a reduced structured evidence schema
-- ranks 4 modeled conditions with a Bayesian reasoning layer
-- applies urgent safety overrides for red-flag cases
-- returns explanation text, recommendation text, and a visible non-diagnosis disclaimer
-- includes demo notes in the sidebar for presentation use
+This system is **not** a medical diagnostic tool and has not been clinically validated.
 
-This system is **not** a medical diagnostic tool. It is a teaching/demo prototype for CS3263.
+## MVP Scope
 
-## Modeled Scope
-
-### Conditions
+### Modeled conditions
 
 - dehydration
 - hypoglycemia
@@ -51,6 +44,30 @@ This system is **not** a medical diagnostic tool. It is a teaching/demo prototyp
 - fainting
 - recent fall
 
+## Core Capabilities
+
+- free-text symptom parsing with phrase matching and basic negation handling
+- Bayesian ranking over a reduced four-condition space
+- deterministic safety overrides for urgent red-flag scenarios
+- explanation and recommendation generation with a visible non-diagnosis disclaimer
+- Streamlit demo interface with presentation-oriented backend notes
+- benchmark evaluation for parser quality, ranking quality, and safety recall
+
+## Architecture
+
+The current MVP is organized into five main layers:
+
+1. `src/parser/`
+   Maps vague natural-language symptom descriptions into a fixed `yes` / `no` / `unknown` evidence schema.
+2. `src/bn/`
+   Scores the modeled conditions using YAML-backed priors and evidence likelihoods.
+3. `src/rules/`
+   Applies symbolic urgent-escalation rules that take precedence over probabilistic ranking.
+4. `src/explain/`
+   Produces user-facing explanation text, recommendation text, and disclaimer output.
+5. `src/eval/`
+   Runs benchmark cases and writes report-ready evaluation summaries.
+
 ## Repository Layout
 
 ```text
@@ -63,18 +80,16 @@ src/                 Parser, BN, rules, explanation, and evaluation code
 tests/               Test suite
 ```
 
-## Teammate Setup
+## Getting Started
 
-Run everything from the repository root.
+Development was done with Python 3.11. Running everything from the repository root is recommended.
 
-### 1. Create and activate an environment
+### 1. Create an environment
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
-
-If you prefer Conda, that is fine too, but make sure `python3`, `pip`, and Streamlit all come from the same active environment.
 
 ### 2. Install dependencies
 
@@ -82,98 +97,79 @@ If you prefer Conda, that is fine too, but make sure `python3`, `pip`, and Strea
 python3 -m pip install -r requirements.txt
 ```
 
-### 3. Run the demo app
+If Conda is preferred instead of `venv`, make sure `python3`, `pip`, and Streamlit all come from the same active environment.
 
-Use the module form so the app definitely runs in the same Python environment that has the dependencies installed:
+## Running the Demo App
 
 ```bash
 python3 -m streamlit run app/streamlit_app.py
 ```
 
-Then open the local Streamlit URL in your browser.
+The app provides:
 
-### 4. Run the evaluation pipeline
+- a dark-mode landing state with example prompts
+- a single-input / single-output demo flow
+- extracted evidence, safety override, condition ranking, explanation, and recommendation sections
+- optional sidebar demo notes for presentation use
+
+## Running the Evaluation Pipeline
 
 ```bash
 python3 -m src.eval
 ```
 
-This writes report-ready summaries to:
+This command runs the tracked benchmark set and writes:
 
 - `docs/evaluation_summary.md`
 - `docs/evaluation_summary.json`
 
-### 5. Run the tests
+The benchmark cases are defined in:
+
+- `config/benchmark_cases.yaml`
+
+## Running the Test Suite
 
 ```bash
 pytest -q
 ```
 
-## What Teammates Need To Know
+## Data and Knowledge Sources
 
-### For demo use
+The repository includes documentation for both raw-data handling and manual knowledge grounding.
 
-You do **not** need the large raw datasets to run the app, run tests, or run the evaluation pipeline.
-
-The committed config files and benchmark files are enough for:
-
-- the Streamlit demo
-- the parser / BN / rules pipeline
-- the benchmark evaluation
-
-### For dataset analysis / further refinement
-
-Raw-data notes are documented in:
+Key references:
 
 - `docs/data_ingestion.md`
+- `docs/knowledge_sources.md`
+- `docs/cpt_assumptions.md`
+- `docs/cpt_grounding.md`
+- `docs/evaluation_summary.md`
 
-The project may contain:
-
-- smaller tracked raw files for reference
-- processed notes and mappings
-- a large Kaggle raw file that is intentionally not required for normal app usage
-
-## Demo Flow
-
-Recommended teammate demo flow:
-
-1. launch the Streamlit app
-2. use one of the example cards or type a symptom description
-3. click `Analyze`
-4. review the extracted evidence
-5. review the safety override
-6. review the condition ranking, explanation, and recommendation
-7. use the sidebar demo notes if you need to explain how the backend works
-8. use `Clear` to reset back to the landing state
+The full raw datasets are not required to run the app, the tests, or the benchmark evaluation pipeline.
 
 ## Evaluation Purpose
 
-The evaluation pipeline exists mainly for the report and presentation, not for end users.
+The evaluation layer is intended for project analysis and reporting rather than end-user interaction. It measures:
 
-It measures:
-
-- parser precision / recall / F1
+- parser precision, recall, and F1
 - ranking Top-1 accuracy
 - ranking Top-2 recall
-- safety recall / accuracy
+- safety recall and accuracy
 
-The benchmark cases live in:
+The current benchmark suite is synthetic / hand-authored for the reduced MVP scope.
 
-- `config/benchmark_cases.yaml`
+## Limitations
 
-## Key Docs
-
-- `MVP_DELIVERY_PLAN.md`: current implementation plan and progress log
-- `docs/knowledge_sources.md`: public-source grounding
-- `docs/cpt_assumptions.md`: CPT assumptions
-- `docs/cpt_grounding.md`: rationale for probability choices
-- `docs/evaluation_summary.md`: benchmark summary
+- the condition space is intentionally limited to four modeled conditions
+- the CPTs are hand-authored and source-grounded, not learned from clinical outcome data
+- the evaluation is benchmark-based and not a substitute for medical validation
+- the recommendations are conservative next-step prompts, not treatment advice
 
 ## Troubleshooting
 
 ### `ModuleNotFoundError: No module named 'yaml'`
 
-Install dependencies in the same environment you are using to run the commands:
+Install the dependencies in the same environment used to run the app or evaluation:
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -181,13 +177,13 @@ python3 -m pip install -r requirements.txt
 
 ### Streamlit runs but `python3 -m src.eval` fails
 
-This usually means the app and `python3` are coming from different environments. Activate the same environment and rerun:
+This usually indicates an environment mismatch. Activate the same environment and rerun:
 
 ```bash
 source .venv/bin/activate
 python3 -m src.eval
 ```
 
-### Resetting the demo
+### Resetting the demo interface
 
-Use the app's `Clear` button to return to the landing state and remove the current results.
+Use the app's `Clear` button to return to the landing state and remove the current analysis output.
