@@ -54,6 +54,23 @@ streamlit run app/streamlit_app.py
 python3 -m src.eval
 ```
 
+## External Data
+
+The raw-data folders are prepared under `data/raw/`. Source notes live in:
+
+- `docs/data_ingestion.md`
+
+If you later want to fetch the external files from the command line, a helper script is available:
+
+```bash
+bash scripts/fetch_external_data.sh
+```
+
+Note:
+
+- the OpenReview paper and Figshare dataset can be fetched directly when network access is allowed
+- the Kaggle dataset usually requires authenticated/manual download
+
 ## Current Status
 
 This is the initial scaffold commit. The next build steps are:

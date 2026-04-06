@@ -418,6 +418,13 @@ The core MVP is now implemented. The remaining work is a refinement phase focuse
 - keep a short note on what each dataset is used for
 - avoid treating the datasets as end-to-end training sources
 
+Current repo-side progress:
+
+- raw-data subfolders have been prepared for OpenReview, Figshare, and Kaggle sources
+- a tracked ingestion note has been added in `docs/data_ingestion.md`
+- a helper script has been added at `scripts/fetch_external_data.sh`
+- source files have now been placed under `data/raw/openreview/`, `data/raw/figshare/`, and `data/raw/kaggle/`
+
 ### Refinement goal 2: expand parser phrasing from real examples
 
 - use CSympData phrasing examples to broaden the symptom lexicon
@@ -541,11 +548,19 @@ Completed checkpoints:
   - presentation-only backend explanation notes added to the Streamlit UI
   - sidebar "Show demo notes" control added
   - section-level "How this works" explainers added for demo use
+- dataset-ingestion preparation checkpoint completed:
+  - raw-data source folders created
+  - tracked ingestion guidance added
+  - helper fetch script added
+- dataset-ingestion checkpoint completed:
+  - OpenReview paper placed in `data/raw/openreview/OpenReview.pdf`
+  - CSympData file placed in `data/raw/figshare/FigShare.csv`
+  - Kaggle dataset file placed in `data/raw/kaggle/kaggle.csv`
+  - ingestion notes updated to reflect the actual files present
 
 Next logical implementation slice:
 
 - refinement phase:
-  - dataset ingestion
   - parser coverage expansion
   - stronger CPT grounding
   - broader benchmark coverage
