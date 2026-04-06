@@ -197,6 +197,17 @@ Success must be measurable, because this was a direct point in the professor's f
   - override warning if triggered
   - explanation and safe advice
 
+### Module F: demo notes layer
+
+- presentation-only UI notes that explain how each module works in the backend
+- intended for grader/demo use, not for real elderly end users
+- should explain:
+  - how symptom parsing works
+  - how safety overrides work
+  - how Bayesian ranking works
+  - how explanation generation works
+  - how benchmark evaluation is measured
+
 ## 7. Implementation Tasks for This Week
 
 This section lists the work that needs to be completed for a feature-complete MVP by the end of this week. The order below is recommended, but it does not need to be tied to specific days.
@@ -396,7 +407,67 @@ By the end of this week, the MVP should include:
 7. documented knowledge sources and assumptions
 8. two polished demo cases for presentation
 
-## 12. Report and Presentation Implications
+## 12. Refinement Phase
+
+The core MVP is now implemented. The remaining work is a refinement phase focused on improving coverage, grounding, and demo clarity without breaking the scoped project story.
+
+### Refinement goal 1: ingest the external datasets
+
+- download and store the Kaggle disease-symptom dataset in `data/raw/`
+- download and store the CSympData dataset in `data/raw/`
+- keep a short note on what each dataset is used for
+- avoid treating the datasets as end-to-end training sources
+
+### Refinement goal 2: expand parser phrasing from real examples
+
+- use CSympData phrasing examples to broaden the symptom lexicon
+- add more natural variants for existing symptoms before adding many new variables
+- prioritize phrases that improve the current demo cases and benchmark failures
+- keep the canonical output schema stable unless there is a strong reason to expand it
+
+### Refinement goal 3: cautiously expand modeled coverage
+
+The current MVP is intentionally small, but the extracted symptoms and modeled conditions can feel limited in a demo. Refinement should therefore focus on **controlled expansion**, not open-ended growth.
+
+Recommended approach:
+
+- first expand parser coverage for the existing four conditions
+- then consider adding a small number of extra symptom variables if they materially improve realism
+- only consider expanding the condition list if:
+  - the added condition is still low-risk and explainable
+  - it improves demo breadth
+  - it does not break the scoped story of the project
+
+### Refinement goal 4: tighten CPT assumptions with stronger cited sources
+
+- replace loosely chosen starter values with more clearly justified ones
+- document source-backed rationale in `docs/cpt_assumptions.md`
+- ensure the report can explain where each major probability choice came from
+
+### Refinement goal 5: enlarge benchmark coverage and tune failure cases
+
+- add more parser cases with natural language variation
+- add more ambiguous ranking cases
+- add more negative cases for safety overrides
+- use benchmark failures to drive targeted parser and CPT fixes
+
+### Refinement goal 6: add demo-oriented backend notes in the UI
+
+- add a demo-only section in the Streamlit app explaining each module
+- keep the notes concise and clearly labeled as presentation aids
+- possible placement:
+  - collapsible expander sections under each output block
+  - or a dedicated "How this works" sidebar section
+
+The UI notes should explain:
+
+- parser: phrase matching, synonym handling, negation handling
+- safety layer: rule-based overrides from `config/safety_rules.yaml`
+- ranking layer: priors + evidence likelihoods from YAML-backed CPT files
+- explanation layer: explanation built from extracted evidence, ranking, and override state
+- evaluation layer: benchmark-driven metrics written to `docs/evaluation_summary.md`
+
+## 13. Report and Presentation Implications
 
 This MVP plan also supports the final report structure required by the course.
 
@@ -415,25 +486,26 @@ This MVP plan also supports the final report structure required by the course.
 - demo one benign case and one urgent case
 - explain success metrics before showing results
 
-## 13. Immediate Next Actions
+## 14. Immediate Next Actions
 
 The highest-priority next implementation steps are:
 
-1. ingest the two public datasets into `data/raw/`
-2. expand the parser lexicon using dataset-derived symptom phrasing
-3. expand parser coverage using benchmark-driven failure cases
-4. refine CPT assumptions using stronger public-source grounding
-5. polish benchmark coverage and demo cases
+1. add a demo-only "How this works" note layer to the Streamlit UI
+2. ingest the two public datasets into `data/raw/`
+3. expand the parser lexicon using dataset-derived symptom phrasing
+4. expand parser coverage using benchmark-driven failure cases
+5. refine CPT assumptions using stronger public-source grounding
 
-## 14. Non-Negotiable Guardrails
+## 15. Non-Negotiable Guardrails
 
 - do not present the system as a medical diagnostic tool
 - do not claim clinical validation
-- do not expand beyond four modeled conditions for the MVP
+- do not expand scope carelessly; any condition expansion must stay small and justified
 - do not let the UI work delay parser, BN, or evaluation
+- do not let presentation-oriented UI notes distort the actual backend logic
 - do not ship without a visible disclaimer and urgent escalation path
 
-## 15. Implementation Progress
+## 16. Implementation Progress
 
 Completed checkpoints:
 
@@ -465,9 +537,17 @@ Completed checkpoints:
   - parser, ranking, and safety metrics implemented
   - runnable evaluation artifact generation added
   - report-ready evaluation summary generation added
+- demo-note UI checkpoint completed:
+  - presentation-only backend explanation notes added to the Streamlit UI
+  - sidebar "Show demo notes" control added
+  - section-level "How this works" explainers added for demo use
 
 Next logical implementation slice:
 
-- benchmark-driven refinement and dataset ingestion
+- refinement phase:
+  - dataset ingestion
+  - parser coverage expansion
+  - stronger CPT grounding
+  - broader benchmark coverage
 
 This plan gives a single primary implementer a realistic path to a high-scoring, course-aligned MVP within one week while staying faithful to the professor's feedback and the grading rubric.
