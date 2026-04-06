@@ -1,11 +1,59 @@
-# Symptom likelihood placeholders.
-# Example shape:
-# dehydration:
-#   dizziness: 0.60
-#   dry_mouth: 0.80
-#   fatigue: 0.45
+# `yes`-likelihoods for reduced evidence variables conditioned on each condition.
+# `no` evidence is scored as `(1 - yes_likelihood)`.
+# `unknown` evidence is ignored.
 
-dehydration: {}
-hypoglycemia: {}
-mild_viral_infection: {}
-medication_side_effect: {}
+dehydration:
+  skipped_meal: 0.20
+  low_water_intake: 0.80
+  poor_sleep: 0.30
+  chronic_condition_flag: 0.30
+  dizziness: 0.65
+  fatigue: 0.50
+  dry_mouth: 0.85
+  headache: 0.55
+  mild_fever: 0.10
+  nausea: 0.30
+  sweating: 0.15
+  confusion: 0.15
+
+hypoglycemia:
+  skipped_meal: 0.80
+  low_water_intake: 0.20
+  poor_sleep: 0.25
+  chronic_condition_flag: 0.70
+  dizziness: 0.60
+  fatigue: 0.55
+  dry_mouth: 0.10
+  headache: 0.25
+  mild_fever: 0.05
+  nausea: 0.35
+  sweating: 0.80
+  confusion: 0.30
+
+mild_viral_infection:
+  skipped_meal: 0.25
+  low_water_intake: 0.25
+  poor_sleep: 0.35
+  chronic_condition_flag: 0.20
+  dizziness: 0.25
+  fatigue: 0.75
+  dry_mouth: 0.20
+  headache: 0.55
+  mild_fever: 0.85
+  nausea: 0.30
+  sweating: 0.35
+  confusion: 0.10
+
+medication_side_effect:
+  skipped_meal: 0.20
+  low_water_intake: 0.25
+  poor_sleep: 0.35
+  chronic_condition_flag: 0.75
+  dizziness: 0.45
+  fatigue: 0.40
+  dry_mouth: 0.55
+  headache: 0.30
+  mild_fever: 0.05
+  nausea: 0.65
+  sweating: 0.25
+  confusion: 0.20

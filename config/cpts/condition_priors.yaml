@@ -1,5 +1,5 @@
-# Literature-informed priors to be filled in during implementation.
-dehydration: null
-hypoglycemia: null
-mild_viral_infection: null
-medication_side_effect: null
+# Initial literature-informed / project-assumption priors for the reduced MVP.
+dehydration: 0.34
+hypoglycemia: 0.16
+mild_viral_infection: 0.30
+medication_side_effect: 0.20

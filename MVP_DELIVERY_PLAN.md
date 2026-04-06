@@ -421,8 +421,8 @@ The highest-priority next implementation steps are:
 
 1. ingest the two public datasets into `data/raw/`
 2. expand the parser lexicon using dataset-derived symptom phrasing
-3. implement Bayesian condition ranking and CPT loading
-4. draft initial explanation generation for ranked outputs
+3. draft initial explanation generation for ranked outputs
+4. build evaluation scripts for ranking and safety metrics
 5. wire the end-to-end app flow and benchmark scripts
 
 ## 14. Non-Negotiable Guardrails
@@ -450,9 +450,14 @@ Completed checkpoints:
   - deterministic override matching implemented
   - urgent override output integrated into the app
   - safety rule tests added
+- Bayesian ranking checkpoint completed:
+  - YAML-backed priors and evidence likelihoods added
+  - posterior ranking implementation added
+  - condition ranking integrated into the app
+  - Bayesian ranking tests added
 
 Next logical implementation slice:
 
-- Bayesian condition ranking plus CPT loading
+- explanation generation plus safe next-step advice
 
 This plan gives a single primary implementer a realistic path to a high-scoring, course-aligned MVP within one week while staying faithful to the professor's feedback and the grading rubric.

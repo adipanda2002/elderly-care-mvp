@@ -49,3 +49,15 @@ def load_lexicon_config() -> dict[str, Any]:
 def load_safety_rules_config() -> dict[str, Any]:
     """Load symbolic safety override rules."""
     return _read_yaml(config_path("safety_rules.yaml"))
+
+
+@lru_cache(maxsize=1)
+def load_condition_priors_config() -> dict[str, Any]:
+    """Load condition priors for Bayesian ranking."""
+    return _read_yaml(config_path("cpts", "condition_priors.yaml"))
+
+
+@lru_cache(maxsize=1)
+def load_evidence_likelihoods_config() -> dict[str, Any]:
+    """Load reduced evidence likelihoods for Bayesian ranking."""
+    return _read_yaml(config_path("cpts", "symptom_likelihoods.yaml"))
