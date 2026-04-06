@@ -19,7 +19,26 @@ venv/
 .streamlit/secrets.toml
 
 # Data artifacts
+# Keep raw source data conservative by default.
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/openreview/
+!data/raw/openreview/.gitkeep
+!data/raw/openreview/OpenReview.pdf
+!data/raw/figshare/
+!data/raw/figshare/.gitkeep
+!data/raw/figshare/FigShare.csv
+!data/raw/kaggle/
+!data/raw/kaggle/.gitkeep
+data/raw/kaggle/*
+!data/raw/kaggle/.gitkeep
+
+# Allow curated processed artifacts to be committed.
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/README.md
+!data/processed/**/*.csv
+!data/processed/**/*.json
+!data/processed/**/*.yaml
+!data/processed/**/*.yml
+!data/processed/**/*.md

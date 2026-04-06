@@ -557,6 +557,10 @@ Completed checkpoints:
   - CSympData file placed in `data/raw/figshare/FigShare.csv`
   - Kaggle dataset file placed in `data/raw/kaggle/kaggle.csv`
   - ingestion notes updated to reflect the actual files present
+- data-tracking policy checkpoint completed:
+  - `.gitignore` updated to allow tracked small raw files and committed processed artifacts
+  - large Kaggle raw file kept ignored by default
+  - `data/processed/README.md` added to clarify what should be committed
 
 Next logical implementation slice:
 

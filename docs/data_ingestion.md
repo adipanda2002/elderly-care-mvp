@@ -60,3 +60,10 @@ Use in project:
 - The external sources are used for grounding, parser coverage, and benchmarking.
 - The project should not claim clinical validation from these files.
 - The Kaggle dataset should not be presented as direct real-patient evidence.
+
+## Git tracking policy
+
+- `data/raw/openreview/OpenReview.pdf` is allowed to be tracked
+- `data/raw/figshare/FigShare.csv` is allowed to be tracked
+- `data/raw/kaggle/kaggle.csv` remains ignored by default because it is large
+- `data/processed/` is intended for small committed derived artifacts that help teammates reproduce the MVP
