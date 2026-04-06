@@ -63,6 +63,12 @@ symptoms:
       - tired
       - fatigued
       - fatigue
+      - feeling sick
+      - feeling sick overall
+      - feeling ill
+      - lost appetite
+      - decreased appetite
+      - chills
       - feeling tired
       - extreme tiredness
       - tiredness
@@ -100,6 +106,7 @@ symptoms:
   mild_fever:
     positive:
       - fever
+      - chills
       - warm
       - feeling warm
       - feeling hot

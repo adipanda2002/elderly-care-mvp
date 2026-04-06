@@ -566,11 +566,15 @@ Completed checkpoints:
   - schema kept stable while phrase coverage increased
   - processed phrase-expansion notes added to `data/processed/parser_phrase_expansion.md`
   - parser tests added for the new dataset-derived wording
+- benchmark-driven parser expansion checkpoint completed:
+  - additional high-frequency missed phrases identified from dataset review
+  - parser coverage expanded for phrases such as `feeling sick`, `lost appetite`, and `chills`
+  - benchmark cases updated to reflect the new parser coverage
+  - parser and evaluation suite rerun successfully after the update
 
 Next logical implementation slice:
 
 - refinement phase:
-  - benchmark-driven parser coverage expansion
   - stronger CPT grounding
   - broader benchmark coverage
 

@@ -108,3 +108,16 @@ These appeared in the data but were not added to the current schema yet:
 - `fast heart rate`
 
 These may become future symptom variables if benchmark-driven refinement shows that they would materially improve the MVP.
+
+## Benchmark-driven refinement notes
+
+After the first dataset-driven pass, the following additional phrases were promoted because they appeared frequently and exposed visible parser gaps during refinement:
+
+- `feeling sick`
+- `feeling sick overall`
+- `feeling ill`
+- `lost appetite`
+- `decreased appetite`
+- `chills`
+
+These are currently mapped into the existing fatigue and mild-fever style variables rather than triggering a schema expansion.

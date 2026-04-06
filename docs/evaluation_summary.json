@@ -6,7 +6,7 @@
     "safety_recall_target": 1.0
   },
   "parser": {
-    "num_cases": 5,
+    "num_cases": 7,
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
@@ -90,6 +90,32 @@
           "mild_fever=no"
         ],
         "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      {
+        "id": "parser_feeling_sick_case",
+        "expected": [
+          "fatigue=yes",
+          "mild_fever=yes"
+        ],
+        "predicted": [
+          "fatigue=yes",
+          "mild_fever=yes"
+        ],
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      {
+        "id": "parser_lost_appetite_case",
+        "expected": [
+          "fatigue=yes"
+        ],
+        "predicted": [
+          "fatigue=yes"
+        ],
+        "true_positives": 1,
         "false_positives": 0,
         "false_negatives": 0
       }

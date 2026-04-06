@@ -35,6 +35,17 @@ parser_cases:
       mild_fever: no
       chest_pain: no
 
+  - id: parser_feeling_sick_case
+    text: I am feeling sick and have chills.
+    expected:
+      fatigue: yes
+      mild_fever: yes
+
+  - id: parser_lost_appetite_case
+    text: I feel ill and have lost appetite.
+    expected:
+      fatigue: yes
+
 ranking_cases:
   - id: ranking_dehydration
     evidence:
