@@ -421,8 +421,8 @@ The highest-priority next implementation steps are:
 
 1. ingest the two public datasets into `data/raw/`
 2. expand the parser lexicon using dataset-derived symptom phrasing
-3. draft initial explanation generation for ranked outputs
-4. build evaluation scripts for ranking and safety metrics
+3. build evaluation scripts for ranking and safety metrics
+4. expand parser coverage using benchmark-driven failure cases
 5. wire the end-to-end app flow and benchmark scripts
 
 ## 14. Non-Negotiable Guardrails
@@ -455,9 +455,14 @@ Completed checkpoints:
   - posterior ranking implementation added
   - condition ranking integrated into the app
   - Bayesian ranking tests added
+- explanation checkpoint completed:
+  - explanation generation added from evidence, ranking, and overrides
+  - safe next-step recommendation generation added
+  - visible disclaimer added to the app
+  - explanation tests added
 
 Next logical implementation slice:
 
-- explanation generation plus safe next-step advice
+- evaluation scripts and benchmark summaries
 
 This plan gives a single primary implementer a realistic path to a high-scoring, course-aligned MVP within one week while staying faithful to the professor's feedback and the grading rubric.

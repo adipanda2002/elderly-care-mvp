@@ -10,6 +10,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.bn import rank_conditions
+from src.explain import build_response
 from src.parser import parse_free_text
 from src.rules import evaluate_overrides
 
@@ -32,6 +33,7 @@ if st.button("Analyze"):
         extracted = {key: value for key, value in evidence.items() if value != "unknown"}
         override = evaluate_overrides(evidence)
         condition_scores = rank_conditions(evidence)
+        response = build_response(evidence, condition_scores, override)
 
         st.subheader("Extracted Evidence")
         if extracted:
@@ -49,17 +51,23 @@ if st.button("Analyze"):
         st.subheader("Condition Ranking")
         ranking_rows = [
             {
-                "condition": condition.replace("_", " "),
-                "probability": f"{score * 100:.1f}%",
+                "condition": str(condition["label"]),
+                "probability": f"{float(condition['probability']) * 100:.1f}%",
             }
-            for condition, score in condition_scores.items()
+            for condition in response["conditions"]
         ]
         st.table(ranking_rows)
 
         if bool(override["triggered"]):
             st.caption("Urgent escalation takes precedence over the ranked conditions shown above.")
 
-        st.info("Parser, safety, and Bayesian ranking checkpoints are active. Explanation generation is the next slice.")
+        st.subheader("Explanation")
+        st.write(str(response["explanation"]))
+
+        st.subheader("Recommendation")
+        st.write(str(response["recommendation"]))
+
+        st.caption(str(response["disclaimer"]))
 
 st.markdown(
     """
