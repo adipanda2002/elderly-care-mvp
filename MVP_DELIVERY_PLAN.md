@@ -451,6 +451,13 @@ Recommended approach:
 - document source-backed rationale in `docs/cpt_assumptions.md`
 - ensure the report can explain where each major probability choice came from
 
+Current repo-side progress:
+
+- a dedicated grounding note has been added in `docs/cpt_grounding.md`
+- `docs/cpt_assumptions.md` now distinguishes project priors from symptom-level anchors
+- `docs/knowledge_sources.md` now includes explicit public-source links used to justify symptom relevance
+- the viral-condition symptom likelihoods have been slightly recalibrated to better match the cited references without changing the reduced 4-condition scope
+
 ### Refinement goal 5: enlarge benchmark coverage and tune failure cases
 
 - add more parser cases with natural language variation
@@ -497,11 +504,9 @@ This MVP plan also supports the final report structure required by the course.
 
 The highest-priority next implementation steps are:
 
-1. add a demo-only "How this works" note layer to the Streamlit UI
-2. ingest the two public datasets into `data/raw/`
-3. expand the parser lexicon using dataset-derived symptom phrasing
-4. expand parser coverage using benchmark-driven failure cases
-5. refine CPT assumptions using stronger public-source grounding
+1. broaden benchmark coverage with more ambiguous cases, negative override cases, and parser edge cases
+2. tighten the evaluation workflow and document the intended way to run it locally
+3. reassess whether a very small condition or symptom-schema expansion is actually justified after the broader benchmark pass
 
 ## 15. Non-Negotiable Guardrails
 
@@ -571,11 +576,17 @@ Completed checkpoints:
   - parser coverage expanded for phrases such as `feeling sick`, `lost appetite`, and `chills`
   - benchmark cases updated to reflect the new parser coverage
   - parser and evaluation suite rerun successfully after the update
+- CPT-grounding checkpoint completed:
+  - `docs/cpt_grounding.md` added to explain how public references map to demo probabilities
+  - `docs/cpt_assumptions.md` strengthened with clearer priors, symptom anchors, and source-backed rationale
+  - `docs/knowledge_sources.md` updated with explicit source URLs for the currently modeled conditions
+  - mild viral infection likelihoods slightly recalibrated to better reflect the cited symptom references
 
 Next logical implementation slice:
 
 - refinement phase:
-  - stronger CPT grounding
   - broader benchmark coverage
+  - evaluation-command reliability and usage cleanup
+  - controlled decision on whether any small coverage expansion is still worth it
 
 This plan gives a single primary implementer a realistic path to a high-scoring, course-aligned MVP within one week while staying faithful to the professor's feedback and the grading rubric.

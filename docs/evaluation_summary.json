@@ -141,10 +141,10 @@
         "top1_hit": true,
         "top2_hit": true,
         "scores": {
-          "dehydration": 0.9053330187305778,
-          "medication_side_effect": 0.0786925243356945,
-          "hypoglycemia": 0.012209264381780473,
-          "mild_viral_infection": 0.003765192551947105
+          "dehydration": 0.9030662066271727,
+          "medication_side_effect": 0.07849549057803727,
+          "hypoglycemia": 0.012178694295743957,
+          "mild_viral_infection": 0.006259608499046033
         }
       },
       {
@@ -162,10 +162,10 @@
         "top1_hit": true,
         "top2_hit": true,
         "scores": {
-          "hypoglycemia": 0.8386884715898374,
-          "dehydration": 0.08573968801357874,
-          "medication_side_effect": 0.061427378290271305,
-          "mild_viral_infection": 0.014144462106312466
+          "hypoglycemia": 0.83085381802653,
+          "dehydration": 0.08493874609656504,
+          "medication_side_effect": 0.06085355112499,
+          "mild_viral_infection": 0.023353884751915
         }
       },
       {
@@ -183,10 +183,10 @@
         "top1_hit": true,
         "top2_hit": true,
         "scores": {
-          "mild_viral_infection": 0.966325036603221,
-          "dehydration": 0.016105417276720355,
-          "hypoglycemia": 0.011368529842390843,
-          "medication_side_effect": 0.006201016277667728
+          "mild_viral_infection": 0.962658771846051,
+          "dehydration": 0.01785884824754083,
+          "hypoglycemia": 0.01260624582179354,
+          "medication_side_effect": 0.006876134084614654
         }
       },
       {
@@ -204,10 +204,10 @@
         "top1_hit": true,
         "top2_hit": true,
         "scores": {
-          "medication_side_effect": 0.6480012211138212,
-          "dehydration": 0.2977609733294748,
-          "hypoglycemia": 0.04736904031265603,
-          "mild_viral_infection": 0.006868765244047869
+          "medication_side_effect": 0.6450474348463315,
+          "dehydration": 0.2964036884272902,
+          "hypoglycemia": 0.047153117847974255,
+          "mild_viral_infection": 0.011395758878404093
         }
       },
       {

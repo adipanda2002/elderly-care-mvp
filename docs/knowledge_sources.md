@@ -16,10 +16,22 @@
 
 ## Public health references to use for assumptions
 
-- CDC
-- Mayo Clinic
-- WHO
-- HealthHub Singapore
+- CDC low blood sugar:
+  - <https://www.cdc.gov/diabetes/about/low-blood-sugar-hypoglycemia.html>
+- MedlinePlus dehydration:
+  - <https://medlineplus.gov/ency/article/000982.htm>
+- MedlinePlus dry mouth:
+  - <https://medlineplus.gov/ency/article/007760.htm>
+- MedlinePlus common cold:
+  - <https://medlineplus.gov/commoncold.html>
+- MedlinePlus mononucleosis:
+  - <https://medlineplus.gov/ency/article/000591.htm>
+- NIA cognitive health and older adults:
+  - <https://www.nia.nih.gov/health/brain-health/cognitive-health-and-older-adults>
+- MedlinePlus bumetanide:
+  - <https://medlineplus.gov/druginfo/meds/a684051.html>
+- MedlinePlus levodopa and carbidopa:
+  - <https://medlineplus.gov/druginfo/meds/a601068.html>
 
 ## Logging rule
 

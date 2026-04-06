@@ -36,10 +36,10 @@ mild_viral_infection:
   poor_sleep: 0.35
   chronic_condition_flag: 0.20
   dizziness: 0.25
-  fatigue: 0.75
+  fatigue: 0.70
   dry_mouth: 0.20
-  headache: 0.55
-  mild_fever: 0.85
+  headache: 0.60
+  mild_fever: 0.75
   nausea: 0.30
   sweating: 0.35
   confusion: 0.10
