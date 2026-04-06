@@ -1,17 +1,26 @@
 # Benchmark Cases
 
-## Parser evaluation examples
+The tracked benchmark cases for the MVP now live in:
 
-Add reduced-set examples here for precision, recall, and F1 testing.
+- `/Users/adityaghosh/Desktop/CS3263/Project/elderly-care-mvp/config/benchmark_cases.yaml`
 
-## Condition ranking cases
+They are divided into:
 
-Record hand-designed benchmark cases with:
+- parser cases: free-text inputs with expected labeled evidence
+- ranking cases: structured evidence with expected top-1 and acceptable top-2 conditions
+- safety cases: free-text inputs with expected escalation behavior
 
-- input evidence
-- expected top condition
-- acceptable top-2 conditions
+Current benchmark coverage includes:
 
-## Safety cases
+- dehydration-like benign cases
+- hypoglycemia-like benign cases
+- viral-pattern benign cases
+- medication-side-effect benign cases
+- negation cases
+- chest pain, fainting, fall-plus-dizziness, and severe-confusion urgent cases
 
-Record emergency override cases and expected escalation outcomes.
+To regenerate the summary artifacts after changing parser rules, CPTs, or safety logic, run:
+
+```bash
+python3 -m src.eval
+```

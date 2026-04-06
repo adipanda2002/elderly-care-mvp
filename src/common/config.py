@@ -61,3 +61,9 @@ def load_condition_priors_config() -> dict[str, Any]:
 def load_evidence_likelihoods_config() -> dict[str, Any]:
     """Load reduced evidence likelihoods for Bayesian ranking."""
     return _read_yaml(config_path("cpts", "symptom_likelihoods.yaml"))
+
+
+@lru_cache(maxsize=1)
+def load_benchmark_cases_config() -> dict[str, Any]:
+    """Load benchmark cases for parser, ranking, and safety evaluation."""
+    return _read_yaml(config_path("benchmark_cases.yaml"))

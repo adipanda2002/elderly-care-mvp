@@ -1,0 +1,123 @@
+parser_cases:
+  - id: parser_dehydration_basic
+    text: I did not drink much water today. My mouth feels very dry and I am a little dizzy.
+    expected:
+      low_water_intake: yes
+      dry_mouth: yes
+      dizziness: yes
+
+  - id: parser_hypoglycemia_basic
+    text: I skipped breakfast, feel sweaty and dizzy, and I am starting to feel weak.
+    expected:
+      skipped_meal: yes
+      sweating: yes
+      dizziness: yes
+      fatigue: yes
+
+  - id: parser_viral_basic
+    text: I feel tired, warm, and have a mild headache since this morning.
+    expected:
+      fatigue: yes
+      mild_fever: yes
+      headache: yes
+
+  - id: parser_medication_basic
+    text: I have high blood pressure, feel nauseous, and my mouth is dry after taking my medicine.
+    expected:
+      chronic_condition_flag: yes
+      nausea: yes
+      dry_mouth: yes
+
+  - id: parser_negation_case
+    text: I am dizzy but I have no fever and no chest pain.
+    expected:
+      dizziness: yes
+      mild_fever: no
+      chest_pain: no
+
+ranking_cases:
+  - id: ranking_dehydration
+    evidence:
+      low_water_intake: yes
+      dry_mouth: yes
+      dizziness: yes
+      mild_fever: no
+    expected_top1: dehydration
+    acceptable_top2:
+      - dehydration
+      - medication_side_effect
+
+  - id: ranking_hypoglycemia
+    evidence:
+      skipped_meal: yes
+      sweating: yes
+      dizziness: yes
+      mild_fever: no
+    expected_top1: hypoglycemia
+    acceptable_top2:
+      - hypoglycemia
+      - dehydration
+
+  - id: ranking_viral
+    evidence:
+      mild_fever: yes
+      fatigue: yes
+      headache: yes
+      dry_mouth: no
+    expected_top1: mild_viral_infection
+    acceptable_top2:
+      - mild_viral_infection
+      - dehydration
+
+  - id: ranking_medication
+    evidence:
+      chronic_condition_flag: yes
+      nausea: yes
+      dry_mouth: yes
+      mild_fever: no
+    expected_top1: medication_side_effect
+    acceptable_top2:
+      - medication_side_effect
+      - dehydration
+
+  - id: ranking_ambiguous_dehydration_vs_hypoglycemia
+    evidence:
+      skipped_meal: yes
+      low_water_intake: yes
+      dizziness: yes
+      dry_mouth: yes
+    expected_top1: dehydration
+    acceptable_top2:
+      - dehydration
+      - hypoglycemia
+
+safety_cases:
+  - id: safety_chest_pain
+    text: I feel dizzy and have chest tightness.
+    expected_trigger: true
+    expected_rule_id: chest_pain_emergency
+
+  - id: safety_fainting
+    text: I passed out earlier and now feel weak.
+    expected_trigger: true
+    expected_rule_id: fainting_emergency
+
+  - id: safety_fall_plus_dizziness
+    text: I fell down earlier and now I feel dizzy.
+    expected_trigger: true
+    expected_rule_id: dizziness_after_fall
+
+  - id: safety_severe_confusion
+    text: I am very confused and extremely disoriented.
+    expected_trigger: true
+    expected_rule_id: severe_confusion_emergency
+
+  - id: safety_benign_negated_red_flag
+    text: I am dizzy but I have no chest pain.
+    expected_trigger: false
+    expected_rule_id: ""
+
+  - id: safety_benign_dehydration
+    text: I did not drink much water today and my mouth feels dry.
+    expected_trigger: false
+    expected_rule_id: ""

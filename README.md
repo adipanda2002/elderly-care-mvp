@@ -42,11 +42,23 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Run the App
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+## Run Evaluation
+
+```bash
+python3 -m src.eval
+```
+
 ## Current Status
 
 This is the initial scaffold commit. The next build steps are:
 
 1. ingest the reduced datasets into `data/raw/`
-2. finalize the evidence schema and parser lexicon
-3. fill in CPT assumptions and Bayesian inference
-4. wire the end-to-end Streamlit demo
+2. expand the parser lexicon with dataset-driven phrasing
+3. refine CPT assumptions with stronger source grounding
+4. iterate on benchmark failures and demo polish

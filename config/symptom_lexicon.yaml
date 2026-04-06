@@ -59,6 +59,12 @@ symptoms:
   dry_mouth:
     positive:
       - dry mouth
+      - mouth feels dry
+      - mouth feels very dry
+      - mouth is dry
+      - mouth is very dry
+      - mouth is feeling dry
+      - mouth is feeling very dry
       - thirsty
       - very thirsty
       - parched
