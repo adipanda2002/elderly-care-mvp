@@ -602,12 +602,21 @@ Completed checkpoints:
   - removed the scaffold-style landing copy from the Streamlit app
   - removed the leftover planned-output placeholder section from the app
   - kept the rest of the demo-note and analysis flow unchanged
+- landing-state polish checkpoint completed:
+  - added a more polished centered intro state with example prompt cards
+  - kept the app as a single-input / single-output workflow rather than a persistent chat interface
+  - added a clear/reset control so the page can return cleanly to the initial state during demos
+  - kept the landing-state styling aligned with the app's dark-mode presentation instead of switching the demo to light mode
+  - fixed the clear/reset control to use a state-safe Streamlit callback flow
+  - tightened the centered subtitle width and wrapping so the landing copy balances more cleanly
+  - added one-time smooth scrolling to the results section after analysis completes
+  - retargeted the auto-scroll to the analysis controls area so the `Extracted Evidence` heading naturally remains in view
 
 Next logical implementation slice:
 
 - refinement phase:
   - evaluation-command reliability and usage cleanup
   - controlled decision on whether any very small schema expansion is still worth it
-  - optional UI polish beyond the current cleanup if needed for presentation
+  - optional UI polish beyond the landing state if needed for presentation
 
 This plan gives a single primary implementer a realistic path to a high-scoring, course-aligned MVP within one week while staying faithful to the professor's feedback and the grading rubric.
