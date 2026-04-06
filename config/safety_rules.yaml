@@ -1,0 +1,25 @@
+rules:
+  - id: chest_pain_emergency
+    if_all:
+      chest_pain: yes
+    action: urgent_escalation
+    message: Seek urgent medical attention immediately.
+
+  - id: severe_confusion_emergency
+    if_all:
+      severe_confusion: yes
+    action: urgent_escalation
+    message: Seek urgent medical attention immediately.
+
+  - id: fainting_emergency
+    if_all:
+      fainting: yes
+    action: urgent_escalation
+    message: Seek urgent medical attention immediately.
+
+  - id: dizziness_after_fall
+    if_all:
+      dizziness: yes
+      recent_fall: yes
+    action: urgent_escalation
+    message: Seek urgent medical attention immediately.

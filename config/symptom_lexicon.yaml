@@ -1,0 +1,74 @@
+symptoms:
+  dizziness:
+    positive:
+      - dizzy
+      - lightheaded
+      - light headed
+      - woozy
+      - unsteady
+  fatigue:
+    positive:
+      - tired
+      - fatigued
+      - weak
+      - exhausted
+  dry_mouth:
+    positive:
+      - dry mouth
+      - thirsty
+      - very thirsty
+      - parched
+  headache:
+    positive:
+      - headache
+      - head hurts
+      - head pain
+  mild_fever:
+    positive:
+      - fever
+      - warm
+      - slightly warm
+      - mild fever
+  nausea:
+    positive:
+      - nauseous
+      - nausea
+      - sick to my stomach
+  sweating:
+    positive:
+      - sweating
+      - sweaty
+      - clammy
+  confusion:
+    positive:
+      - confused
+      - disoriented
+      - not thinking clearly
+
+red_flags:
+  chest_pain:
+    positive:
+      - chest pain
+      - chest tightness
+      - pressure in my chest
+  severe_confusion:
+    positive:
+      - very confused
+      - severely confused
+      - extremely disoriented
+  fainting:
+    positive:
+      - fainted
+      - passed out
+      - blacked out
+  recent_fall:
+    positive:
+      - fell
+      - had a fall
+      - fell down
+
+negations:
+  - no
+  - not
+  - without
+  - never

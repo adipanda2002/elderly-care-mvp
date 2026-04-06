@@ -1,0 +1,10 @@
+# Core app and data tooling
+streamlit
+pandas
+pyyaml
+
+# Bayesian inference
+pgmpy
+
+# Testing
+pytest

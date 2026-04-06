@@ -1,0 +1,43 @@
+conditions:
+  - dehydration
+  - hypoglycemia
+  - mild_viral_infection
+  - medication_side_effect
+
+context_variables:
+  skipped_meal:
+    values: [yes, no, unknown]
+  low_water_intake:
+    values: [yes, no, unknown]
+  poor_sleep:
+    values: [yes, no, unknown]
+  chronic_condition_flag:
+    values: [yes, no, unknown]
+
+symptoms:
+  dizziness:
+    values: [yes, no, unknown]
+  fatigue:
+    values: [yes, no, unknown]
+  dry_mouth:
+    values: [yes, no, unknown]
+  headache:
+    values: [yes, no, unknown]
+  mild_fever:
+    values: [yes, no, unknown]
+  nausea:
+    values: [yes, no, unknown]
+  sweating:
+    values: [yes, no, unknown]
+  confusion:
+    values: [yes, no, unknown]
+
+red_flags:
+  chest_pain:
+    values: [yes, no, unknown]
+  severe_confusion:
+    values: [yes, no, unknown]
+  fainting:
+    values: [yes, no, unknown]
+  recent_fall:
+    values: [yes, no, unknown]

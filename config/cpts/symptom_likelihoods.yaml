@@ -1,0 +1,11 @@
+# Symptom likelihood placeholders.
+# Example shape:
+# dehydration:
+#   dizziness: 0.60
+#   dry_mouth: 0.80
+#   fatigue: 0.45
+
+dehydration: {}
+hypoglycemia: {}
+mild_viral_infection: {}
+medication_side_effect: {}
