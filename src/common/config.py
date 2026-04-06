@@ -43,3 +43,9 @@ def load_variables_config() -> dict[str, Any]:
 def load_lexicon_config() -> dict[str, Any]:
     """Load parser phrase mappings and negation terms."""
     return _read_yaml(config_path("symptom_lexicon.yaml"))
+
+
+@lru_cache(maxsize=1)
+def load_safety_rules_config() -> dict[str, Any]:
+    """Load symbolic safety override rules."""
+    return _read_yaml(config_path("safety_rules.yaml"))

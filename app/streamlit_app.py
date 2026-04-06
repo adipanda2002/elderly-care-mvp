@@ -10,6 +10,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.parser import parse_free_text
+from src.rules import evaluate_overrides
 
 
 st.set_page_config(page_title="Elderly Symptom Reasoning Assistant", page_icon=":stethoscope:")
@@ -28,6 +29,7 @@ if st.button("Analyze"):
     else:
         evidence = parse_free_text(user_input)
         extracted = {key: value for key, value in evidence.items() if value != "unknown"}
+        override = evaluate_overrides(evidence)
 
         st.subheader("Extracted Evidence")
         if extracted:
@@ -35,7 +37,14 @@ if st.button("Analyze"):
         else:
             st.caption("No symptom phrases were recognized yet.")
 
-        st.info("Parser checkpoint active. Bayesian ranking and safety overrides are the next slices.")
+        st.subheader("Safety Override")
+        if bool(override["triggered"]):
+            st.error(str(override["message"]))
+            st.caption(f"Triggered rule: {override['rule_id']}")
+        else:
+            st.success("No urgent override triggered from the currently recognized evidence.")
+
+        st.info("Parser and safety checkpoints are active. Bayesian ranking is the next slice.")
 
 st.markdown(
     """
