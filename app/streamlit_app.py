@@ -19,7 +19,7 @@ from src.rules import evaluate_overrides
 st.set_page_config(page_title="Elderly Symptom Reasoning Assistant", page_icon=":stethoscope:")
 
 st.title("Elderly Symptom Reasoning Assistant")
-st.caption("Initial MVP scaffold for CS3263.")
+st.caption("Bayesian symptom reasoning demo with safety overrides and explainable outputs.")
 
 show_demo_notes = st.sidebar.checkbox("Show demo notes", value=True)
 
@@ -165,14 +165,3 @@ if st.button("Analyze"):
         st.write(str(response["recommendation"]))
 
         st.caption(str(response["disclaimer"]))
-
-st.markdown(
-    """
-    ### Planned output
-
-    - Extracted evidence variables
-    - Ranked condition probabilities
-    - Emergency override warning when triggered
-    - Short explanation and safe next-step guidance
-    """
-)

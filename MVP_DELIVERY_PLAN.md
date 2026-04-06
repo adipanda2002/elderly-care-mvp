@@ -445,6 +445,12 @@ Recommended approach:
   - it improves demo breadth
   - it does not break the scoped story of the project
 
+Current recommendation:
+
+- keep the modeled condition list fixed at four unless a concrete benchmark or demo gap clearly justifies expansion
+- prefer better phrasing coverage, benchmark breadth, and UI/demo clarity over adding new conditions late
+- if any schema expansion is revisited later, favor at most one small symptom-variable addition before any new condition
+
 ### Refinement goal 4: tighten CPT assumptions with stronger cited sources
 
 - replace loosely chosen starter values with more clearly justified ones
@@ -592,11 +598,16 @@ Completed checkpoints:
   - ranking benchmarks expanded with additional overlap cases and explicit negative-evidence cases
   - safety benchmarks expanded with more non-trigger cases and a multi-rule precedence case
   - generated evaluation summary now reports benchmark set sizes alongside headline metrics
+- UI cleanup checkpoint completed:
+  - removed the scaffold-style landing copy from the Streamlit app
+  - removed the leftover planned-output placeholder section from the app
+  - kept the rest of the demo-note and analysis flow unchanged
 
 Next logical implementation slice:
 
 - refinement phase:
   - evaluation-command reliability and usage cleanup
-  - controlled decision on whether any small coverage expansion is still worth it
+  - controlled decision on whether any very small schema expansion is still worth it
+  - optional UI polish beyond the current cleanup if needed for presentation
 
 This plan gives a single primary implementer a realistic path to a high-scoring, course-aligned MVP within one week while staying faithful to the professor's feedback and the grading rubric.
