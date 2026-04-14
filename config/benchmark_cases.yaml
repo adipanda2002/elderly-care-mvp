@@ -81,6 +81,48 @@ parser_cases:
     text: I just feel off today.
     expected: {}
 
+  - id: parser_queasy_medication_variant
+    text: I have diabetes and feel queasy after taking my medicine.
+    expected:
+      chronic_condition_flag: yes
+      nausea: yes
+
+  - id: parser_hadnt_eaten_shaky_variant
+    text: I hadn't eaten since morning and now feel shaky and sweaty.
+    expected:
+      skipped_meal: yes
+      sweating: yes
+
+  - id: parser_feverish_tired_variant
+    text: I feel feverish and tired today.
+    expected:
+      mild_fever: yes
+      fatigue: yes
+
+  - id: parser_head_spinning_parched_variant
+    text: My head is spinning and I feel parched.
+    expected:
+      dizziness: yes
+      dry_mouth: yes
+
+  - id: parser_hot_exhausted_variant
+    text: I am feeling hot and exhausted today.
+    expected:
+      mild_fever: yes
+      fatigue: yes
+
+  - id: parser_clammy_light_headed_variant
+    text: I have cool clammy skin and feel light headed.
+    expected:
+      sweating: yes
+      dizziness: yes
+
+  - id: parser_water_and_sleep_variant
+    text: I have not had much water and woke up a lot last night.
+    expected:
+      low_water_intake: yes
+      poor_sleep: yes
+
 ranking_cases:
   - id: ranking_dehydration
     evidence:
@@ -193,6 +235,28 @@ ranking_cases:
       - medication_side_effect
       - dehydration
 
+  - id: ranking_skipped_meal_headache_fatigue_overlap
+    evidence:
+      skipped_meal: yes
+      fatigue: yes
+      headache: yes
+      mild_fever: no
+    expected_top1: hypoglycemia
+    acceptable_top2:
+      - hypoglycemia
+      - dehydration
+
+  - id: ranking_chronic_dizziness_headache_overlap
+    evidence:
+      chronic_condition_flag: yes
+      dizziness: yes
+      headache: yes
+      mild_fever: no
+    expected_top1: medication_side_effect
+    acceptable_top2:
+      - medication_side_effect
+      - dehydration
+
 safety_cases:
   - id: safety_chest_pain
     text: I feel dizzy and have chest tightness.
@@ -253,3 +317,18 @@ safety_cases:
     text: I did not faint, but I fell down earlier and now I feel dizzy.
     expected_trigger: true
     expected_rule_id: dizziness_after_fall
+
+  - id: safety_burning_chest_pain_variant
+    text: I have burning chest pain and feel dizzy.
+    expected_trigger: true
+    expected_rule_id: chest_pain_emergency
+
+  - id: safety_blacked_out_variant
+    text: I blacked out earlier and now feel weak.
+    expected_trigger: true
+    expected_rule_id: fainting_emergency
+
+  - id: safety_long_negation_chest_pain_false_positive_risk
+    text: I do not currently have any chest pain, only dizziness.
+    expected_trigger: false
+    expected_rule_id: ""

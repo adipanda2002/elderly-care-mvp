@@ -4,21 +4,21 @@
 
 | Metric | Value | Target |
 | --- | ---: | ---: |
-| Parser F1 | 1.000 | 0.75 |
+| Parser F1 | 0.952 | 0.75 |
 | Parser Precision | 1.000 | - |
-| Parser Recall | 1.000 | - |
-| Ranking Top-1 Accuracy | 1.000 | 0.75 |
+| Parser Recall | 0.909 | - |
+| Ranking Top-1 Accuracy | 0.833 | 0.75 |
 | Ranking Top-2 Recall | 1.000 | 0.90 |
 | Safety Recall | 1.000 | 1.00 |
-| Safety Accuracy | 1.000 | - |
+| Safety Accuracy | 0.933 | - |
 
 ## Benchmark Coverage
 
 | Benchmark Group | Cases |
 | --- | ---: |
-| Parser Cases | 13 |
-| Ranking Cases | 10 |
-| Safety Cases | 12 |
+| Parser Cases | 20 |
+| Ranking Cases | 12 |
+| Safety Cases | 15 |
 
 ## Notes
 

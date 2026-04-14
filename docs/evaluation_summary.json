@@ -6,10 +6,10 @@
     "safety_recall_target": 1.0
   },
   "parser": {
-    "num_cases": 13,
+    "num_cases": 20,
     "precision": 1.0,
-    "recall": 1.0,
-    "f1": 1.0,
+    "recall": 0.9090909090909091,
+    "f1": 0.9523809523809523,
     "details": [
       {
         "id": "parser_dehydration_basic",
@@ -198,12 +198,106 @@
         "true_positives": 0,
         "false_positives": 0,
         "false_negatives": 0
+      },
+      {
+        "id": "parser_queasy_medication_variant",
+        "expected": [
+          "chronic_condition_flag=yes",
+          "nausea=yes"
+        ],
+        "predicted": [
+          "chronic_condition_flag=yes"
+        ],
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      {
+        "id": "parser_hadnt_eaten_shaky_variant",
+        "expected": [
+          "skipped_meal=yes",
+          "sweating=yes"
+        ],
+        "predicted": [
+          "sweating=yes"
+        ],
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      {
+        "id": "parser_feverish_tired_variant",
+        "expected": [
+          "fatigue=yes",
+          "mild_fever=yes"
+        ],
+        "predicted": [
+          "fatigue=yes"
+        ],
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      {
+        "id": "parser_head_spinning_parched_variant",
+        "expected": [
+          "dizziness=yes",
+          "dry_mouth=yes"
+        ],
+        "predicted": [
+          "dry_mouth=yes"
+        ],
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      {
+        "id": "parser_hot_exhausted_variant",
+        "expected": [
+          "fatigue=yes",
+          "mild_fever=yes"
+        ],
+        "predicted": [
+          "fatigue=yes",
+          "mild_fever=yes"
+        ],
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      {
+        "id": "parser_clammy_light_headed_variant",
+        "expected": [
+          "dizziness=yes",
+          "sweating=yes"
+        ],
+        "predicted": [
+          "dizziness=yes",
+          "sweating=yes"
+        ],
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      {
+        "id": "parser_water_and_sleep_variant",
+        "expected": [
+          "low_water_intake=yes",
+          "poor_sleep=yes"
+        ],
+        "predicted": [
+          "low_water_intake=yes",
+          "poor_sleep=yes"
+        ],
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0
       }
     ]
   },
   "ranking": {
-    "num_cases": 10,
-    "top1_accuracy": 1.0,
+    "num_cases": 12,
+    "top1_accuracy": 0.8333333333333334,
     "top2_recall": 1.0,
     "details": [
       {
@@ -415,13 +509,55 @@
           "hypoglycemia": 0.06400850811265196,
           "mild_viral_infection": 0.014502464747596689
         }
+      },
+      {
+        "id": "ranking_skipped_meal_headache_fatigue_overlap",
+        "expected_top1": "hypoglycemia",
+        "acceptable_top2": [
+          "hypoglycemia",
+          "dehydration"
+        ],
+        "predicted_top1": "dehydration",
+        "predicted_top2": [
+          "dehydration",
+          "hypoglycemia"
+        ],
+        "top1_hit": false,
+        "top2_hit": true,
+        "scores": {
+          "dehydration": 0.3659889094269872,
+          "hypoglycemia": 0.36359682505164714,
+          "mild_viral_infection": 0.17125149505273451,
+          "medication_side_effect": 0.09916277046863115
+        }
+      },
+      {
+        "id": "ranking_chronic_dizziness_headache_overlap",
+        "expected_top1": "medication_side_effect",
+        "acceptable_top2": [
+          "medication_side_effect",
+          "dehydration"
+        ],
+        "predicted_top1": "dehydration",
+        "predicted_top2": [
+          "dehydration",
+          "medication_side_effect"
+        ],
+        "top1_hit": false,
+        "top2_hit": true,
+        "scores": {
+          "dehydration": 0.46706088293057807,
+          "medication_side_effect": 0.27378106054137125,
+          "hypoglycemia": 0.22713687985654524,
+          "mild_viral_infection": 0.032021176671505426
+        }
       }
     ]
   },
   "safety": {
-    "num_cases": 12,
+    "num_cases": 15,
     "recall": 1.0,
-    "accuracy": 1.0,
+    "accuracy": 0.9333333333333333,
     "details": [
       {
         "id": "safety_chest_pain",
@@ -506,6 +642,27 @@
         "predicted_trigger": true,
         "expected_rule_id": "dizziness_after_fall",
         "predicted_rule_id": "dizziness_after_fall"
+      },
+      {
+        "id": "safety_burning_chest_pain_variant",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "expected_rule_id": "chest_pain_emergency",
+        "predicted_rule_id": "chest_pain_emergency"
+      },
+      {
+        "id": "safety_blacked_out_variant",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "expected_rule_id": "fainting_emergency",
+        "predicted_rule_id": "fainting_emergency"
+      },
+      {
+        "id": "safety_long_negation_chest_pain_false_positive_risk",
+        "expected_trigger": false,
+        "predicted_trigger": true,
+        "expected_rule_id": "",
+        "predicted_rule_id": "chest_pain_emergency"
       }
     ]
   }
